@@ -1,0 +1,62 @@
+.mainImageContainer {
+  position: relative;
+  width: 100%;
+}
+
+.mainImage {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.man {
+  position: absolute;
+}
+
+.man1 {
+  width: 20%;
+  height: auto;
+  right: 15%;
+  top: 10%;
+}
+
+.man2 {
+  width: 22%;
+  height: auto;
+  right: 12%;
+  top: 15%;
+  animation: dropDown 2s forwards; /* 수직으로 떨어지는 애니메이션 */
+}
+
+.man3 {
+  width: 16%; /* 크기 증가 */
+  height: auto;
+  left: 77%;  /* 예를 들어 화면의 중앙에 위치 */
+  top: 85%;
+  transform: translate(-50%, -50%); /* 정중앙 정렬 */
+  opacity: 1;
+}
+
+@keyframes dropDown {
+  0% {
+      top: 10%;
+      opacity: 1;
+  }
+  60% {
+      opacity: 1;
+  }
+  100% {
+      top: 55%; /* 수직으로 아래로 떨어짐 */
+      opacity: 0; /* 사라지기 */
+  }
+}
+
+.mainImageButton {
+  position: absolute;
+  transition: background-color 0.2s, opacity 2s ease-in-out;
+  opacity: 0; /* 초기 투명도 설정 */
+}
+
+.mainImageButton:hover {
+  background-color: #218838;
+}

@@ -1,0 +1,59 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.logoSection {
+    display: flex;
+    align-items: center;
+}
+
+.logoLink {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    text-decoration: none;
+    color: inherit; 
+}
+
+.logo {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.title {
+    font-size: 24px;
+    margin: 0;
+}
+
+.buttonSection {
+    display: flex;
+    margin-left: auto;
+}
+
+.button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.button img {
+    height: 40px;
+}
+
+@media (max-width: 768px) {
+    .logo {
+        height: 7vw;
+    }
+    
+    .title {
+        font-size: 3.5vw;
+    }
+
+    .button img {
+        height: 5.6vw;
+    }
+}
