@@ -20,7 +20,7 @@ function Body({ stage }) {
 
     const handleMouseEnter = (ref) => {
         if (ref.current) {
-            ref.current.style.transform = 'scale(2.0) rotateY(20deg)';
+            ref.current.style.transform = 'scale(1.5) rotateY(20deg)';
         }
     };
 
