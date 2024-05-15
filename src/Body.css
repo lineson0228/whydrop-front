@@ -29,10 +29,10 @@
 }
 
 .man3 {
-  width: 16%; /* 크기 증가 */
+  width: 30%; /* 크기 증가 */
   height: auto;
-  left: 77%;  /* 예를 들어 화면의 중앙에 위치 */
-  top: 85%;
+  left: 85%;  /* 예를 들어 화면의 중앙에 위치 */
+  top: 70%;
   transform: translate(-50%, -50%); /* 정중앙 정렬 */
   opacity: 1;
 }
@@ -71,33 +71,25 @@
 @media (max-width: 768px) {
   .mainImageButton {
     width: 40%; /* 화면이 작을 경우 너비 60% */
-    font-size: 14px; /* 작은 화면에서의 글자 크기 */
+    font-size: 18px; /* 작은 화면에서의 글자 크기 */
   }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 769px){
   .mainImageButton {
-    width: 40%; /* 중간 크기의 화면에서 너비 40% */
-    font-size: 16px; /* 중간 화면에서의 글자 크기 */
+    width: 30%; /* 중간 크기의 화면에서 너비 40% */
+    height: 10%;
+    font-size: calc(1.0vw + 10px);
   }
 }
-
-@media (min-width: 1025px) {
-  .mainImageButton {
-    width: 30%; /* 큰 화면에서 너비 30% */
-    font-size: 18px; /* 큰 화면에서의 글자 크기 */
-  }
-}
-
-
 
 .mainImageButton:hover {
   background-color: #218838;
 }
 
 
-.interactiveImage-a {
-  width: 8%;
+.interactiveImage-c {
+  width: 5%;
   height: auto;
   position: absolute;
   left: 3%;
@@ -106,8 +98,8 @@
   transform-origin: center center;
 }
 
-.interactiveImage-b {
-  width: 8%;
+.interactiveImage-d {
+  width: 5%;
   height: auto;
   position: absolute;
   left: 20%; /* 원하는 위치로 수정 */
@@ -116,8 +108,8 @@
   transform-origin: center center;
 }
 
-.interactiveImage-c {
-  width: 8%;
+.interactiveImage-a {
+  width: 5%;
   height: auto;
   position: absolute;
   left: 50%; /* 원하는 위치로 수정 */
@@ -126,8 +118,8 @@
   transform-origin: center center;
 }
 
-.interactiveImage-d {
-  width: 8%;
+.interactiveImage-b {
+  width: 5%;
   height: auto;
   position: absolute;
   left: 70%; /* 원하는 위치로 수정 */
@@ -182,22 +174,34 @@
 }
 
 .prevSlide, .nextSlide {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-  font-size: 24px;
-  z-index: 1001;
+    position: absolute; /* 부모 컨테이너에 상대적으로 위치 */
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 24px;
+    z-index: 1001;
 }
 
 .prevSlide {
-  left: 0;
+    left: -40px; /* 이전 슬라이드 버튼을 이미지 왼쪽에 위치 */
 }
 
 .nextSlide {
-  right: 0;
+    right: -40px; /* 다음 슬라이드 버튼을 이미지 오른쪽에 위치 */
 }
+
+.modal-content {
+    position: relative;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: white;
+    width: auto;
+    max-width: 90%;
+    display: flex;
+    justify-content: center;
+}
+

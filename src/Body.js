@@ -84,11 +84,13 @@ function Body({ stage }) {
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <span className="close" onClick={handleCloseModal}>&times;</span>
                         <img src={slides[String.fromCharCode(97 + selectedImageIndex)][currentSlideIndex]} alt="Detailed Slide" className="modalImage" />
+                        {/* 슬라이드 버튼을 각 슬라이드 이미지 양쪽에 배치 */}
                         <button className="prevSlide" onClick={handlePrevSlide}>&#10094;</button>
                         <button className="nextSlide" onClick={handleNextSlide}>&#10095;</button>
                     </div>
                 </div>
-            )}
+)}
+
         </div>
     );
 }

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import Header from './Header';
 import Body from './Body';
 import Login from './Login';
@@ -10,6 +10,7 @@ function App() {
     const imageRef = useRef(null);
     const [buttonSize, setButtonSize] = useState(0);
     const [stage, setStage] = useState(0);
+    const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 관리
 
     useEffect(() => {
         function updateButtonSize() {
@@ -36,14 +37,22 @@ function App() {
         };
     }, []);
 
+    const handleLogin = () => {
+        setIsLoggedIn(true);
+    };
+
+    const handleLogout = () => {
+        setIsLoggedIn(false);
+    };
+
     return (
         <Router>
             <div className="app">
-                <Header />
+                <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
                 <Routes>
                     <Route path="/" element={<Body imageRef={imageRef} buttonSize={buttonSize} stage={stage} />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/signup" element={<Signup />} /> 
+                    <Route path="/login" element={<Login onLogin={handleLogin} />} />
+                    <Route path="/signup" element={<Signup />} />
                 </Routes>
             </div>
         </Router>
