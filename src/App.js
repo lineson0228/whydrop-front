@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom'; // useNavigate 추가
 import Header from './Header';
 import Body from './Body';
 import Login from './Login';
@@ -7,10 +7,17 @@ import Signup from './Signup';
 import './App.css';
 
 function App() {
-    const imageRef = useRef(null);
-    const [buttonSize, setButtonSize] = useState(0);
-    const [stage, setStage] = useState(0);
     const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 관리
+    const navigate = useNavigate(); // useNavigate 훅 사용
+
+    const handleLogin = () => {
+        setIsLoggedIn(true);
+    };
+
+    const handleLogout = () => {
+        setIsLoggedIn(false);
+        navigate('/'); // 로그아웃 후 메인 화면으로 리디렉션
+    };
 
     useEffect(() => {
         function updateButtonSize() {
@@ -37,13 +44,9 @@ function App() {
         };
     }, []);
 
-    const handleLogin = () => {
-        setIsLoggedIn(true);
-    };
-
-    const handleLogout = () => {
-        setIsLoggedIn(false);
-    };
+    const imageRef = useRef(null);
+    const [buttonSize, setButtonSize] = useState(0);
+    const [stage, setStage] = useState(0);
 
     return (
         <Router>
