@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Header from './Header';
 import Body from './Body';
@@ -9,6 +9,7 @@ import './App.css';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 관리
+    const navigate = useNavigate(); // useNavigate 훅 사용
 
     const handleLogin = () => {
         setIsLoggedIn(true);
@@ -16,7 +17,7 @@ function App() {
 
     const handleLogout = async (navigate) => {
         try {
-            const response = await axios.post('로그아웃 엔드포인트'); // 서버에 로그아웃 요청을 보냅니다.
+            const response = await axios.get('로그아웃 엔드포인트'); // 서버에 로그아웃 요청을 보냅니다.
             if (response.status === 200) {
                 setIsLoggedIn(false); // 로그아웃 상태로 변경
                 navigate('/'); // 메인 화면으로 리디렉션
