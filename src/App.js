@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import Header from './Header';
 import Body from './Body';
@@ -9,13 +9,12 @@ import './App.css';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 관리
-    const navigate = useNavigate(); // useNavigate 훅 사용
 
     const handleLogin = () => {
         setIsLoggedIn(true);
     };
 
-    const handleLogout = async () => {
+    const handleLogout = async (navigate) => {
         try {
             const response = await axios.post('로그아웃 엔드포인트'); // 서버에 로그아웃 요청을 보냅니다.
             if (response.status === 200) {
@@ -28,6 +27,10 @@ function App() {
             console.error('Logout failed:', error.response?.data || error.message);
         }
     };
+
+    const imageRef = useRef(null);
+    const [buttonSize, setButtonSize] = useState(0);
+    const [stage, setStage] = useState(0);
 
     useEffect(() => {
         function updateButtonSize() {
@@ -54,21 +57,15 @@ function App() {
         };
     }, []);
 
-    const imageRef = useRef(null);
-    const [buttonSize, setButtonSize] = useState(0);
-    const [stage, setStage] = useState(0);
-
     return (
-        <Router>
-            <div className="app">
-                <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
-                <Routes>
-                    <Route path="/" element={<Body imageRef={imageRef} buttonSize={buttonSize} stage={stage} />} />
-                    <Route path="/login" element={<Login onLogin={handleLogin} />} />
-                    <Route path="/signup" element={<Signup />} />
-                </Routes>
-            </div>
-        </Router>
+        <div className="app">
+            <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+            <Routes>
+                <Route path="/" element={<Body imageRef={imageRef} buttonSize={buttonSize} stage={stage} />} />
+                <Route path="/login" element={<Login onLogin={handleLogin} />} />
+                <Route path="/signup" element={<Signup />} />
+            </Routes>
+        </div>
     );
 }
 

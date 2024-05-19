@@ -1,8 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './Header.module.css';  // CSS 모듈 불러오기
 
 function Header({ isLoggedIn, onLogout }) {
+    const navigate = useNavigate();
+
+    const handleLogoutClick = () => {
+        onLogout(navigate);
+    };
+
     return (
         <div className={styles.header}>
             <div className={styles.logoSection}>
@@ -17,7 +23,7 @@ function Header({ isLoggedIn, onLogout }) {
                         <Link to="/mypage">
                             <button className={styles.button}><img src="button3.png" alt="My Page" /></button>
                         </Link>
-                        <button className={styles.button} onClick={onLogout}><img src="button4.png" alt="Logout" /></button>
+                        <button className={styles.button} onClick={handleLogoutClick}><img src="button4.png" alt="Logout" /></button>
                     </>
                 ) : (
                     <>
