@@ -1,10 +1,12 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react'; // useRef 추가
+import { useNavigate } from 'react-router-dom'; // useNavigate 훅을 통해 페이지 이동
 import './Body.css'; // CSS 파일 로드
 
-function Body({ stage }) {
+function Body({ stage, imageRef, buttonSize }) {
     const [isModalOpen, setModalOpen] = useState(false);
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
     const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+    const navigate = useNavigate(); // useNavigate 훅 사용
 
     // 각 이미지의 슬라이드 배열 정의 (a, b, c, d 각각 2장씩)
     const slides = {
@@ -54,6 +56,10 @@ function Body({ stage }) {
         setCurrentSlideIndex((prev) => (prev - 1 + numSlides) % numSlides); // 순환 이동
     };
 
+    const handleButtonClick = () => {
+        navigate('/upload'); // 업로드 페이지로 이동
+    };
+
     return (
         <div className="mainImageContainer">
             <img ref={mainImageRef} src="main.png" alt="Main Content" className="mainImage" />
@@ -74,8 +80,8 @@ function Body({ stage }) {
             {stage === 3 && (
                 <>
                     <img src="man3.png" alt="Man 3" className="man man3" />
-                    <button className="mainImageButton">
-                        내 영상 피드백
+                    <button className="mainImageButton" onClick={handleButtonClick}>
+                        내 영상 분석
                     </button>
                 </>
             )}
@@ -84,13 +90,11 @@ function Body({ stage }) {
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <span className="close" onClick={handleCloseModal}>&times;</span>
                         <img src={slides[String.fromCharCode(97 + selectedImageIndex)][currentSlideIndex]} alt="Detailed Slide" className="modalImage" />
-                        {/* 슬라이드 버튼을 각 슬라이드 이미지 양쪽에 배치 */}
                         <button className="prevSlide" onClick={handlePrevSlide}>&#10094;</button>
                         <button className="nextSlide" onClick={handleNextSlide}>&#10095;</button>
                     </div>
                 </div>
-)}
-
+            )}
         </div>
     );
 }

@@ -5,6 +5,7 @@ import Header from './Header';
 import Body from './Body';
 import Login from './Login';
 import Signup from './Signup';
+import Upload from './Upload'; 
 import './App.css';
 
 function App() {
@@ -65,6 +66,7 @@ function App() {
                 <Route path="/" element={<Body imageRef={imageRef} buttonSize={buttonSize} stage={stage} />} />
                 <Route path="/login" element={<Login onLogin={handleLogin} />} />
                 <Route path="/signup" element={<Signup />} />
+                <Route path="/upload" element={<Upload />} /> {/* 업로드 페이지 추가 */}
             </Routes>
         </div>
     );

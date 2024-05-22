@@ -1,207 +1,291 @@
-.mainImageContainer {
+.upload-page {
   position: relative;
   width: 100%;
+  height: 100vh;
+}
+
+.main-image {
+  width: 100%;
+  height: auto;
+  position: relative; /* 변경: absolute에서 relative로 */
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.upload-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%; /* 너비를 웹의 너비에 따라 반응형으로 설정 */
+  max-width: 600px; /* 최대 너비 설정 */
+  min-width: 300px; /* 최소 너비 설정 */
+  height: 30%; /* 높이를 웹의 너비에 따라 반응형으로 설정 */
+  max-height: 400px; /* 최대 높이 설정 */
+  min-height: 200px; /* 최소 높이 설정 */
+  padding: 20px;
+  background: rgba(255, 255, 255, 1.0); /* 투명도를 1.0으로 설정 */
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: border-color 0.3s;
+  z-index: 1; /* Ensure this is on top of the main image */
+  box-sizing: border-box;
+}
+
+.upload-container.dragging {
+  border-color: #28a745;
+}
+
+.upload-container h2 {
+  margin: 0;
+  color: #333;
+  font-size: calc(0.8em + 1vw); /* 반응형 글씨 크기 */
+}
+
+.upload-container p {
+  margin: 10px 0;
+  color: #666;
+  font-size: calc(0.6em + 0.5vw); /* 반응형 글씨 크기 */
+}
+
+.upload-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upload-container input[type="file"] {
+  margin-bottom: 10px;
+}
+
+.upload-container button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 10px; /* 버튼 간격 추가 */
+}
+
+.upload-container button:hover {
+  background-color: #218838;
+}
+
+.file-name {
+  margin-top: 10px;
+  color: #333;
+  font-size: calc(0.6em + 0.5vw); /* 반응형 글씨 크기 */
+  word-break: break-all; /* 긴 파일명을 줄 바꿈 */
+  text-align: center; /* 중앙 정렬 */
+}
+
+.mainImageContainer {
+position: relative;
+width: 100%;
 }
 
 .mainImage {
-  width: 100%;
-  height: auto;
-  display: block;
+width: 100%;
+height: auto;
+display: block;
 }
 
 .man {
-  position: absolute;
+position: absolute;
 }
 
 .man1 {
-  width: 20%;
-  height: auto;
-  right: 15%;
-  top: 10%;
+width: 20%;
+height: auto;
+right: 15%;
+top: 10%;
 }
 
 .man2 {
-  width: 22%;
-  height: auto;
-  right: 12%;
-  top: 15%;
-  animation: dropDown 2s forwards; /* 수직으로 떨어지는 애니메이션 */
+width: 22%;
+height: auto;
+right: 12%;
+top: 15%;
+animation: dropDown 2s forwards; /* 수직으로 떨어지는 애니메이션 */
 }
 
 .man3 {
-  width: 30%; /* 크기 증가 */
-  height: auto;
-  left: 85%;  /* 예를 들어 화면의 중앙에 위치 */
-  top: 70%;
-  transform: translate(-50%, -50%); /* 정중앙 정렬 */
-  opacity: 1;
+width: 30%; /* 크기 증가 */
+height: auto;
+left: 85%;  /* 예를 들어 화면의 중앙에 위치 */
+top: 70%;
+transform: translate(-50%, -50%); /* 정중앙 정렬 */
+opacity: 1;
 }
 
 @keyframes dropDown {
-  0% {
-      top: 10%;
-      opacity: 1;
-  }
-  60% {
-      opacity: 1;
-  }
-  100% {
-      top: 55%; /* 수직으로 아래로 떨어짐 */
-      opacity: 0; /* 사라지기 */
-  }
+0% {
+    top: 10%;
+    opacity: 1;
+}
+60% {
+    opacity: 1;
+}
+100% {
+    top: 55%; /* 수직으로 아래로 떨어짐 */
+    opacity: 0; /* 사라지기 */
+}
 }
 
 .mainImageButton {
-  position: absolute;
-  bottom: 45%; /* 하단에서 5%의 위치에 배치 */
-  left: 50%; /* 좌우 중앙 정렬 */
-  transform: translateX(-50%); /* X축 중심 정렬 */
-  transition: background-color 0.2s, opacity 2s ease-in-out;
-  opacity: 1; /* 버튼이 항상 보이게 변경 */
-  padding: 10px 20px; /* 패딩 조정 */
-  background-color: #218838; /* 기본 배경색 설정 */
-  color: white; /* 글자색 */
-  border: none; /* 테두리 제거 */
-  cursor: pointer; /* 마우스 오버 시 커서 변경 */
-  min-width: 150px; /* 버튼 최소 너비 설정 */
-  height: 50px; /* 버튼 높이 설정 */
-  font-size: calc(0.6vw + 20px); /* 글자 크기 반응형으로 설정, 최소 10px */
+position: absolute;
+bottom: 45%; /* 하단에서 5%의 위치에 배치 */
+left: 50%; /* 좌우 중앙 정렬 */
+transform: translateX(-50%); /* X축 중심 정렬 */
+transition: background-color 0.2s, opacity 2s ease-in-out;
+opacity: 1; /* 버튼이 항상 보이게 변경 */
+padding: 10px 20px; /* 패딩 조정 */
+background-color: #218838; /* 기본 배경색 설정 */
+color: white; /* 글자색 */
+border: none; /* 테두리 제거 */
+cursor: pointer; /* 마우스 오버 시 커서 변경 */
+min-width: 150px; /* 버튼 최소 너비 설정 */
+height: 50px; /* 버튼 높이 설정 */
+font-size: calc(0.6vw + 20px); /* 글자 크기 반응형으로 설정, 최소 10px */
 }
 
 @media (max-width: 768px) {
-  .mainImageButton {
-    width: 40%; /* 화면이 작을 경우 너비 60% */
-    font-size: 18px; /* 작은 화면에서의 글자 크기 */
-  }
+.mainImageButton {
+  width: 40%; /* 화면이 작을 경우 너비 60% */
+  font-size: 18px; /* 작은 화면에서의 글자 크기 */
+}
 }
 
 @media (min-width: 769px){
-  .mainImageButton {
-    width: 30%; /* 중간 크기의 화면에서 너비 40% */
-    height: 10%;
-    font-size: calc(1.0vw + 10px);
-  }
+.mainImageButton {
+  width: 30%; /* 중간 크기의 화면에서 너비 40% */
+  height: 10%;
+  font-size: calc(1.0vw + 10px);
+}
 }
 
 .mainImageButton:hover {
-  background-color: #218838;
+background-color: #218838;
 }
 
 
 .interactiveImage-c {
-  width: 5%;
-  height: auto;
-  position: absolute;
-  left: 3%;
-  top: calc(50% - 4%);
-  transition: transform 0.3s ease;
-  transform-origin: center center;
+width: 5%;
+height: auto;
+position: absolute;
+left: 3%;
+top: calc(50% - 4%);
+transition: transform 0.3s ease;
+transform-origin: center center;
 }
 
 .interactiveImage-d {
-  width: 5%;
-  height: auto;
-  position: absolute;
-  left: 20%; /* 원하는 위치로 수정 */
-  top: 20%; /* 원하는 위치로 수정 */
-  transition: transform 0.3s ease;
-  transform-origin: center center;
+width: 5%;
+height: auto;
+position: absolute;
+left: 20%; /* 원하는 위치로 수정 */
+top: 20%; /* 원하는 위치로 수정 */
+transition: transform 0.3s ease;
+transform-origin: center center;
 }
 
 .interactiveImage-a {
-  width: 5%;
-  height: auto;
-  position: absolute;
-  left: 50%; /* 원하는 위치로 수정 */
-  top: 60%; /* 원하는 위치로 수정 */
-  transition: transform 0.3s ease;
-  transform-origin: center center;
+width: 5%;
+height: auto;
+position: absolute;
+left: 50%; /* 원하는 위치로 수정 */
+top: 60%; /* 원하는 위치로 수정 */
+transition: transform 0.3s ease;
+transform-origin: center center;
 }
 
 .interactiveImage-b {
-  width: 5%;
-  height: auto;
-  position: absolute;
-  left: 70%; /* 원하는 위치로 수정 */
-  top: 20%; /* 원하는 위치로 수정 */
-  transition: transform 0.3s ease;
-  transform-origin: center center;
+width: 5%;
+height: auto;
+position: absolute;
+left: 70%; /* 원하는 위치로 수정 */
+top: 20%; /* 원하는 위치로 수정 */
+transition: transform 0.3s ease;
+transform-origin: center center;
 }
 
-
-
-
 @media (max-width: 768px) {
-  .interactiveImage {
-    width: 6%; /* 태블릿 크기에서의 이미지 너비 */
-  }
+.interactiveImage {
+  width: 6%; /* 태블릿 크기에서의 이미지 너비 */
+}
 }
 
 @media (max-width: 480px) {
-  .interactiveImage {
-    width: 6%; /* 모바일 크기에서의 이미지 너비 */
-  }
+.interactiveImage {
+  width: 6%; /* 모바일 크기에서의 이미지 너비 */
+}
 }
 
 .modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; /* 다른 요소 위에 표시 */
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 1000; /* 다른 요소 위에 표시 */
 }
 
 .modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
+background-color: white;
+padding: 20px;
+border-radius: 10px;
 }
 
 .modalImage {
-  width: 90%; /* 이미지 크기 조정 */
-  max-height: 80vh; /* 화면에 맞춰 높이 조정 */
+width: 90%; /* 이미지 크기 조정 */
+max-height: 80vh; /* 화면에 맞춰 높이 조정 */
 }
 
 .close {
-  float: right;
-  font-size: 30px;
-  cursor: pointer;
+float: right;
+font-size: 30px;
+cursor: pointer;
 }
 
 .prevSlide, .nextSlide {
-    position: absolute; /* 부모 컨테이너에 상대적으로 위치 */
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    font-size: 24px;
-    z-index: 1001;
+  position: absolute;
+  top: 50%; /* 부모 컨테이너에 상대적으로 위치 */
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 24px;
+  z-index: 1001;
 }
 
 .prevSlide {
-    left: -40px; /* 이전 슬라이드 버튼을 이미지 왼쪽에 위치 */
+  left: 10px; /* 버튼을 이미지 안쪽에 배치 */
 }
 
 .nextSlide {
-    right: -40px; /* 다음 슬라이드 버튼을 이미지 오른쪽에 위치 */
+  right: 10px; /* 버튼을 이미지 안쪽에 배치 */
 }
 
 .modal-content {
-    position: relative;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: white;
-    width: auto;
-    max-width: 90%;
-    display: flex;
-    justify-content: center;
+  position: relative;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: white;
+  width: auto;
+  max-width: 90%;
+  display: flex;
+  justify-content: center;
 }
-
