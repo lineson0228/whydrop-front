@@ -17,6 +17,7 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    top: 20%;
     width: 50%; /* 너비를 웹의 너비에 따라 반응형으로 설정 */
     max-width: 600px; /* 최대 너비 설정 */
     min-width: 300px; /* 최소 너비 설정 */

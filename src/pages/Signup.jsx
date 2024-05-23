@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // useNavigate 훅을 통해 페이지 이동
 import axios from 'axios';
-import './Signup.css';
 
 function Signup() {
     const [username, setUsername] = useState('');
@@ -19,13 +18,13 @@ function Signup() {
     };
 
     // 폼 제출 핸들러
-    const handleSubmit = async (event) => {
+    const handleSubmit = async event => {
         event.preventDefault();
         const userData = {
             username,
             email,
             userID,
-            password
+            password,
         };
 
         try {
@@ -50,13 +49,35 @@ function Signup() {
     };
 
     return (
-        <div className="signupPage">
+        <div className="page">
             <img src="main.png" alt="Main" className="mainImage" />
-            <form className="signupForm" onSubmit={handleSubmit}>
-                <input type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
-                <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
-                <input type="text" placeholder="UserID" value={userID} onChange={e => setUserID(e.target.value)} />
-                <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+            <form className="form" onSubmit={handleSubmit}>
+                <h2 className="title">Sign Up</h2>
+                <input
+                    id="username"
+                    type="text"
+                    placeholder="Username"
+                    value={username}
+                    onChange={e => setUsername(e.target.value)}
+                />
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                />
+                <input
+                    type="text"
+                    placeholder="UserID"
+                    value={userID}
+                    onChange={e => setUserID(e.target.value)}
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                />
                 <button type="submit">Sign Up</button>
             </form>
         </div>
