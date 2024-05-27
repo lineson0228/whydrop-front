@@ -13,7 +13,6 @@ import { AuthProvider } from './contexts/AuthContext';
 import PrivateRoute from './routes/PrviateRoute';
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import MyPage from './pages/MyPage';
-import MyMovie from './pages/MyMovie';
 
 const theme = createTheme({
     typography: {
@@ -40,7 +39,6 @@ function App() {
                         <Route element={<PrivateRoute />}>
                             <Route path="/upload" element={<Upload />} />
                             <Route path="/mypage" element={<MyPage />} />
-                            <Route path="/mymovie/:id" element={<MyMovie />} />
                         </Route>
                     </Routes>
                 </div>

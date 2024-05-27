@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
     Card,
     CardActionArea,
@@ -5,47 +6,64 @@ import {
     CardMedia,
     Typography,
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import '../assets/css/common.css';
+import VideoModal from '../components/VideoModal';
 
 function MyPage() {
-    const movieList = ['movie1', 'movie2', 'movie3'];
+    const movieList = [
+        { id: 'movie1', title: '24/04/14', description: 'ㅁㅁ클라이밍장에서 도전' },
+        { id: 'movie2', title: '24/04/28', description: '친구와 함께 ㅇㅇ클라이밍장' },
+        { id: 'movie3', title: '24/05/15', description: 'XX클라이밍장' },
+    ]; // 비디오 목록
+
+    const [selectedMovie, setSelectedMovie] = useState(null);
+
+    const handleCardClick = (movie) => {
+        setSelectedMovie(movie);
+    };
+
+    const handleCloseModal = () => {
+        setSelectedMovie(null);
+    };
 
     return (
         <div className="page">
-            <img src="main.png" alt="Main" className="main-image" />
+            <img src="main.png" alt="Main" className="main-image" /> {/* 메인 이미지 배경 */}
             <div className="thumbnail-grid">
                 {movieList.map((movie, index) => (
-                    <ThumbNail key={index} index={index} movie={movie} />
+                    <ThumbNail key={index} index={index} movie={movie} onClick={handleCardClick} />
                 ))}
             </div>
+            {selectedMovie && (
+                <VideoModal
+                    movie={selectedMovie}
+                    onClose={handleCloseModal}
+                />
+            )}
         </div>
     );
 }
 
-function ThumbNail({ index, movie }) {
-    const imageSrc = `/images/image${index}.png`;
-    const navigate = useNavigate();
+function ThumbNail({ index, movie, onClick }) {
     const handleClick = () => {
-        console.log('clicked', movie);
-        navigate(`/mymovie/${movie}`);
+        onClick(movie);
     };
+
     return (
-        <Card sx={{ maxWidth: 345 }} onClick={handleClick}>
-            <CardActionArea>
+        <Card sx={{ maxWidth: 345, height: '400px' }} onClick={handleClick}>
+            <CardActionArea sx={{ height: '100%' }}>
                 <CardMedia
                     component="img"
                     height="240"
                     image={`/images/image${index}.png`}
-                    src="/images/sample.png"
+                    alt={movie.title}
                 />
-                <CardContent>
+                <CardContent sx={{ height: '160px', overflow: 'auto' }}>
                     <Typography gutterBottom variant="h5" component="div">
-                        {movie}
+                        {movie.title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        Lizards are a widespread group of squamate reptiles,
-                        with over 6,000 species, ranging across all continents
-                        except Antarctica
+                        {movie.description}
                     </Typography>
                 </CardContent>
             </CardActionArea>
